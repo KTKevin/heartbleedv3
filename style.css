@@ -1,0 +1,80 @@
+body {
+	text-align: center;
+	background: cornflowerblue;
+}
+
+.hasCard {
+	width: 115px;
+	height: 150px;
+	background-repeat: round;
+	display: inline-block;
+	margin: 15px;
+	border: solid black 2px;
+}
+
+.hasCard:hover {
+	width: 200px;
+	height: 250px;
+}
+
+#battlefield {
+	height: 500px;
+	width: 1160px;
+	border: solid purple;
+	position: relative;
+	left: 0px;
+}
+
+#panel {
+	position: absolute;
+	right: 0;
+	top: 8px;
+	height: 500px;
+	width: 100px;
+	border: solid black;
+}
+
+#panel h1 {
+	margin-bottom: 0px;
+}
+
+.playerCards {
+	position: relative;
+	width: auto;
+	height: 49%;
+	border: solid black;
+}
+
+.playerCards div {
+	position: relative;
+	width: 100px;
+	height: 45%;
+	border: solid green;
+	display: inline-block;
+	margin: 20px;
+	vertical-align: top;
+}
+
+#messageHolder {
+	position: relative;
+	width: 100%;
+	height: 55%;
+	bottom: 0;
+}
+
+#messages {
+	color: red;
+}
+
+#panel h1 {
+	font-size: 16px;
+}
+
+#showHand p {
+	display: inline;
+	margin: 10px;
+}
+
+.rotated {
+	transform: rotate(90deg);
+}
