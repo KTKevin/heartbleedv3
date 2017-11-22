@@ -1,7 +1,9 @@
+var highlightCard = "";
+
 var player1TurnCount = 0;
 
 var player1 = {
-	lifeTotal: 10,
+	lifeTotal: 5,
 	isTurn: true, //player1 always go first
 	manapool: 0,
 	cardsInHand: [],
@@ -13,7 +15,7 @@ var player1 = {
 };
 
 var player2 = {
-	lifeTotal: 10,
+	lifeTotal: 5,
 	isTurn: false,
 	manapool: 0,
 	cardsInHand: [],
@@ -94,21 +96,26 @@ var generateDecks = function() { //generate the player decks
 
 var displayHand = function() {
 	for (i=0; i<player1.cardsInHand.length; i++) {
-		$("#showHand").append("<div class='hasCard' style='background-image: url(img/"+ player1.cardsInHand[i].image +
-			")' onclick=select(this.id) id="+ player1.cardsInHand[i].cardId +"></div>");
+		$("#showHand").append("<div class='hasCard highlight' style='background-image: url(img/"+ player1.cardsInHand[i].image +
+			")' onclick='select(this.id)'  id="+ player1.cardsInHand[i].cardId +"></div>");
 	}
 }
 
 var select = function(getCardId) { //onclick function from player1.cardsInHand
+	$("#"+highlightCard).css("border", "black solid 1px")
+	highlightCard = getCardId;
+
+	$("#"+highlightCard).css("border", "white solid 2px")
 	$("#playCard").attr("onclick", "selectFromHand(" + getCardId + ")");
-	//******** ADD A BORDER TO IDENTIFY WHICH CARD IS SELECTED*********
-	// $("#"+getCardId).css("border", "solid red 1px");
-	console.log("Selected a card", getCardId )
 }
 
 var selectOnField = function(getCardId) {
 	$("#tapCard").attr("onclick", "tapCard(" + getCardId + ")");
 	$("#attack").attr("onclick", "attack(player1)");
+
+	$("#"+highlightCard).css("border", "black solid 1px")
+	highlightCard = getCardId;
+	$("#"+highlightCard).css("border", "white solid 2px")
 }
 
 var selectFromHand = function(getCardId) { //param comes from Button with id=playCard,
@@ -168,7 +175,7 @@ var updateTotals = function() {
 	p2Mana.text(player2.manapool);
 
 	if (player2.lifeTotal < 1 || player1.lifeTotal < 1) {
-		if (p1Life.lifeTotal < 1){
+		if (player1.lifeTotal < 1){
 			alert("player 2 wins");
 		} else {
 			alert("player 1 wins")
@@ -265,7 +272,7 @@ var drawCard = function(player) {
 			player1.drewCard = true;
 			var newCard = player.cardsInDeck.shift(); //remove the card and store as newCard
 			player.cardsInHand.push(newCard);
-			$("#showHand").append("<div class='hasCard' style='background-image: url(img/" + newCard.image +
+			$("#showHand").append("<div class='hasCard highlight' style='background-image: url(img/" + newCard.image +
 			")' onclick=select(this.id) id="+ newCard.cardId +"></div>"); //id should equal this.id
 		}
 	} else { //must be player2
@@ -294,7 +301,7 @@ var playLandAI = function() {
 		}
 	}
 	//play the land
-	$(".player2Field").append("<div class='hasCard' style='background-image: url(img/"+ currCard.image +
+	$(".player2Field").append("<div class='hasCard highlight' style='background-image: url(img/"+ currCard.image +
 			")' id="+ currCard.cardId +"></div>");
 }
 
@@ -467,7 +474,7 @@ var playCreatureAI = function() {
 		if (player2.cardsInHand[i].hasOwnProperty("manaCost") && player2.cardsInHand[i].manaCost <= potentialMana) {
 			//cool, let's play that card
 			var currCard = player2.cardsInHand[i];
-			$(".player2Field").append("<div class='hasCard' style='background-image: url(img/"+ currCard.image +
+			$(".player2Field").append("<div class='hasCard highlight' style='background-image: url(img/"+ currCard.image +
 			")' id="+ currCard.cardId +"></div>");
 			currCard = player2.cardsInHand.splice(i, 1); //remove card from hand
 			player2.cardsInPlay.push(currCard[0]);
@@ -522,6 +529,7 @@ var mountain = [{
 var forest = [{
 	name: "Forest",
 	mana: 1,
+	selected: false,
 	image: "forest.jpg"
 }];
 
@@ -536,6 +544,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "birds-of-paradise.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -547,6 +556,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "craw-wurm.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -559,6 +569,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "giant-spider.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -570,6 +581,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "grizzly-bears.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -581,6 +593,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "ironroot-treefolk.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -592,6 +605,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "obsianus-golem.jpg",
+	selected: false,
 	color: "colorless"
 },
 {
@@ -603,6 +617,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "scryb-sprites.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -615,6 +630,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "wall-of-ice.jpg",
+	selected: false,
 	color: "green"
 },
 {
@@ -627,6 +643,7 @@ var greenCreatures = [{
 	hasSickness: true,
 	isTapped: false,
 	image: "wall-of-wood.jpg",
+	selected: false,
 	color: "green"
 }];
 

@@ -1,15 +1,31 @@
 body {
 	text-align: center;
-	background: cornflowerblue;
+	background: url("https://www.pantherpartners.com/uploads/8/6/1/7/86179052/s650898027556343822_p12_i1_w1920.jpeg");
+	background-size: cover;
+}
+
+#nav {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 60px;
+}
+
+#nav h1 {
+	color: white;
 }
 
 .hasCard {
-	width: 115px;
+	width: 10%;
 	height: 150px;
 	background-repeat: round;
 	display: inline-block;
 	margin: 15px;
-	border: solid black 2px;
+	/*border: 1px white solid;*/
+}
+
+.highlight {
+	border: 1px black solid;
 }
 
 .hasCard:hover {
@@ -19,9 +35,10 @@ body {
 
 #battlefield {
 	height: 500px;
-	width: 1160px;
-	border: solid purple;
+	width: 80%;
+	/*border: solid purple;*/
 	position: relative;
+	top: 20px;
 	left: 0px;
 }
 
@@ -30,7 +47,7 @@ body {
 	right: 0;
 	top: 8px;
 	height: 500px;
-	width: 100px;
+	width: 10%;
 	border: solid black;
 }
 
@@ -42,14 +59,16 @@ body {
 	position: relative;
 	width: auto;
 	height: 49%;
-	border: solid black;
+}
+
+.player2Field {
+	border-bottom: white solid 2px;
 }
 
 .playerCards div {
 	position: relative;
 	width: 100px;
 	height: 45%;
-	border: solid green;
 	display: inline-block;
 	margin: 20px;
 	vertical-align: top;
@@ -68,6 +87,12 @@ body {
 
 #panel h1 {
 	font-size: 16px;
+}
+
+#showHand {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
 }
 
 #showHand p {
