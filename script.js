@@ -30,10 +30,11 @@ var generateHands = function() { //generate the player hands, good for now
 	for (var i=6; i>=0; i--) {
 		var index1 = player1.cardsInDeck.splice(i,1);
 		player1.cardsInHand.push(index1[0]);
+
 		var index2 = player2.cardsInDeck.splice(i,1);
 		player2.cardsInHand.push(index2[0]);
-	}
-}
+	};
+};
 
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
@@ -121,7 +122,6 @@ var selectOnField = function(getCardId) {
 var selectFromHand = function(getCardId) { //param comes from Button with id=playCard,
 	var selectedCard = $(getCardId).attr("id"); //the ID of the selected card
 	var currentCard = player1.cardsInHand; //the object of the selected card
-	console.log(currentCard)
 
 	var cardToBattlefield = function() {
 	$(".player1Field").append(getCardId);
@@ -257,6 +257,7 @@ var endTurnFunc = function() {
 				currCard.hasSickness = false;
 			}
 		});
+		
 			updateTotals();
 			$("#messages").text("End player2 turn, player 1 start upkeep");
 	}
